@@ -13,7 +13,7 @@ public interface StudentService {
 
     Student findById(Integer id);
 
-    boolean deleteById(Integer id);
+    Boolean deleteById(Integer id);
 
     Student create(Student student);
 

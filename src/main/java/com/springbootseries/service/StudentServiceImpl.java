@@ -18,6 +18,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    private static final String NOT_SUCH_STUDENT = "No existing student. Id: ";
+
     @Override
     public List<Student> findAll() {
         return studentRepository.findAll();
@@ -29,8 +31,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean deleteById(Integer id) {
-        return studentRepository.deleteById(id);
+    public Boolean deleteById(Integer id) {
+
+        if (findById(id) == null) {
+            throw new DemoException(NOT_SUCH_STUDENT+ id);
+        }
+        studentRepository.delete(id);
+
+        return true;
     }
 
     @Override
@@ -44,7 +52,7 @@ public class StudentServiceImpl implements StudentService {
         Student existingStudent = findById(id);
 
         if (existingStudent == null) {
-            throw new DemoException("No existing student. Id: " + id);
+            throw new DemoException(NOT_SUCH_STUDENT + id);
         }
 
         student.setId(existingStudent.getId());
