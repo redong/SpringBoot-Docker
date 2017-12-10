@@ -1,3 +1,4 @@
 #!/bin/bash
 
-./mvnw package && java -jar target/spring-boot-docker.jar
+./mvnw install dockerfile:build
+docker run -p 8080:8080 -t spring-boot-docker

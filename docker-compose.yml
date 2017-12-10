@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql
+    restart: always
+  sprint-boot:
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mysql
+    restart: always

@@ -10,7 +10,6 @@ import java.io.Serializable;
  * Created by rendong on 11/12/17.
  */
 @Data
-@JsonInclude(Include.NON_NULL)
 public class ResultBean<T> implements Serializable {
 
     public enum Status {
@@ -22,6 +21,7 @@ public class ResultBean<T> implements Serializable {
 
     private T data;
 
+    @JsonInclude(Include.NON_NULL)
     private String msg;
 
     public ResultBean() {}
