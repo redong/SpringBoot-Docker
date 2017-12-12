@@ -1,0 +1,1 @@
+insert into student (first_name, last_name) values ('michael', 'Jordan');
